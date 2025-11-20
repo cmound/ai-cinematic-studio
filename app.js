@@ -1,63 +1,60 @@
-const defaultNegatives = [
-  "extra limbs",
-  "extra body parts",
-  "low quality",
-  "blurry",
-  "worst quality",
-  "low res",
-  "jpeg artifacts",
-  "grainy",
-  "pixelated",
-  "color aberration",
-  "ugly",
-  "deformed",
-  "disfigured",
-  "distorted",
-  "misshapen"
+const negatives = [
+    "extra limbs", "extra body parts", "low quality", "blurry", "worst quality", "low res",
+    "jpeg artifacts", "grainy", "pixelated", "color aberration", "ugly", "deformed",
+    "disfigured", "distorted", "misshapen"
 ];
 
 window.onload = () => {
-  const box = document.getElementById("negativePrompts");
-  defaultNegatives.forEach(term => {
-    const label = document.createElement("label");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = term;
-    checkbox.checked = true;
-    label.appendChild(checkbox);
-    label.append(" " + term);
-    box.appendChild(label);
-  });
+    renderNegativeCheckboxes();
 };
 
-function switchTab(tab) {
-  document.querySelectorAll(".tab").forEach(el => el.classList.remove("active"));
-  document.getElementById(tab + "Tab").classList.add("active");
+function renderNegativeCheckboxes() {
+    const container = document.getElementById("negativePrompts");
+    negatives.forEach(term => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = true;
+        checkbox.value = term;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(term));
+        container.appendChild(label);
+    });
+}
+
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
 }
 
 function generatePrompt() {
-  const scene = document.getElementById("scene").value;
-  const style = document.getElementById("style").value;
-  const mood = document.getElementById("mood").value;
-  const camera = document.getElementById("camera").value;
-  const time = document.getElementById("time").value;
-  const duration = document.getElementById("duration").value;
-  const customNegative = document.getElementById("customNegative").value;
+    const desc = document.getElementById("sceneDescription").value;
+    const style = document.getElementById("visualStyle").value;
+    const mood = document.getElementById("mood").value;
+    const camera = document.getElementById("cameraMovement").value;
+    const time = document.getElementById("timeOfDay").value;
+    const duration = document.getElementById("duration").value;
+    const customNeg = document.getElementById("customNegatives").value;
 
-  const negatives = [...document.querySelectorAll('#negativePrompts input:checked')]
-    .map(cb => cb.value.trim());
+    const negativeList = Array.from(document.querySelectorAll("#negativePrompts input:checked"))
+        .map(input => input.value)
+        .concat(customNeg ? customNeg.split(",").map(v => v.trim()) : []);
 
-  if (customNegative.trim()) {
-    negatives.push(customNegative.trim());
-  }
+    const prompt = `
+Scene: ${desc}
+Style: ${style}
+Mood: ${mood}
+Camera Movement: ${camera}
+Time of Day: ${time}
+Duration: ${duration}s
+Negative Prompts: ${negativeList.join(", ")}
+`.trim();
 
-  const prompt = `
-Create a ${style} video scene that takes place ${scene}.
-The mood should feel ${mood} with ${camera} camera movement during ${time}.
-Video duration: ${duration} seconds.
-
-Negative prompts: ${negatives.join(", ")}
-  `.trim();
-
-  document.getElementById("outputBox").innerText = prompt;
+    document.getElementById("outputPrompt").textContent = prompt;
 }
