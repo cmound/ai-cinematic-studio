@@ -1,1 +1,69 @@
-// Placeholder content for style.css
+body {
+  background-color: #111;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+h1, h2 {
+  color: #e6e6e6;
+}
+textarea, select, input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #444;
+}
+button {
+  background-color: #0099ff;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 12px;
+}
+button:hover {
+  background-color: #007acc;
+}
+.tabs {
+  margin-bottom: 20px;
+}
+.tab-button {
+  padding: 10px 20px;
+  margin-right: 5px;
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.tab-button.active {
+  background-color: #0099ff;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.multi-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.multi-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#negativePrompts label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
