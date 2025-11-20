@@ -1,3 +1,4 @@
+
 const negatives = [
     "extra limbs", "extra body parts", "low quality", "blurry", "worst quality", "low res",
     "jpeg artifacts", "grainy", "pixelated", "color aberration", "ugly", "deformed",
@@ -23,12 +24,8 @@ function renderNegativeCheckboxes() {
 }
 
 function showTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-button').forEach(button => {
-        button.classList.remove('active');
-    });
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     event.target.classList.add('active');
 }

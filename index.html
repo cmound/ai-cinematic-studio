@@ -1,23 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>AI Cinematic Studio</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="app.js"></script>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>🎬 AI Cinematic Studio</h1>
-        <div class="tabs">
-            <button class="tab-button active" onclick="showTab('prompt')">Prompt Generator</button>
-            <button class="tab-button" onclick="showTab('creator')">Video Creator</button>
-        </div>
+        <nav>
+            <button class="tab-button active" onclick="showTab('promptTab')">Prompt Generator</button>
+            <button class="tab-button" onclick="showTab('videoTab')">Video Creator</button>
+        </nav>
+    </header>
 
-        <div id="prompt" class="tab-content active">
+    <main>
+        <!-- Prompt Generator Tab -->
+        <section id="promptTab" class="tab-content active">
             <h2>🎥 Prompt Generator</h2>
-
-            <label>🎬 Scene Description</label>
             <textarea id="sceneDescription" placeholder="e.g. Futuristic city with flying cars"></textarea>
 
             <label>🎨 Visual Style</label>
@@ -46,38 +47,29 @@
                 <option>Satire</option>
             </select>
 
-            <label>🎥 Camera Movement</label>
+            <label>🎬 Camera Movement</label>
             <select id="cameraMovement">
                 <option>Strategic Shot - Stable, No Movement</option>
                 <option>Dolly Shot - Smooth forward/backward</option>
                 <option>Tracking Shot - Following subject</option>
                 <option>Crane Shot - Vertical movement</option>
                 <option>Handheld - Natural shake</option>
-                <option>Aerial Drone - Bird's eye movement</option>
+                <option>Aerial Drone - Bird’s eye movement</option>
                 <option>Orbit Shot - Circular around subject</option>
                 <option>Push In - Dramatic zoom approach</option>
                 <option>Pull Back - Revealing movement</option>
                 <option>Steadicam Follow - Smooth tracking</option>
             </select>
 
-            <label>🕒 Time of Day</label>
+            <label>🌄 Time of Day</label>
             <select id="timeOfDay">
-                <option>Morning</option>
-                <option>Noon</option>
-                <option>Night</option>
-                <option>Natural Sunlight - Outdoor Daylight</option>
-                <option>Golden Hour - Warm Sunset Glow</option>
-                <option>Blue Hour - Twilight Ambiance</option>
-                <option>Window Light - Soft Indoor Natural</option>
-                <option>Studio Key Light - Professional Setup</option>
-                <option>Practical Lights - In-Scene Sources</option>
-                <option>Neon Lighting - Urban Nighttime</option>
-                <option>Candlelight - Intimate Warm Glow</option>
-                <option>Firelight - Flickering Orange Warmth</option>
-                <option>Led Panels - Modern Film Lighting</option>
+                <option>15 seconds</option>
+                <option>10 seconds</option>
+                <option>20 seconds</option>
+                <option>25 seconds</option>
             </select>
 
-            <label>⏱️ Duration (seconds)</label>
+            <label>🕒 Duration (seconds)</label>
             <select id="duration">
                 <option>15 seconds</option>
                 <option>10 seconds</option>
@@ -85,21 +77,52 @@
                 <option>25 seconds</option>
             </select>
 
-            <label>❗ Negative Prompts</label>
-            <div id="negativePrompts" class="checkbox-group"></div>
-
-            <label>Add Custom Negatives</label>
-            <input type="text" id="customNegatives" placeholder="e.g. shadows, distortion" />
+            <div>
+                <h3>❗ Negative Prompts</h3>
+                <div id="negativePrompts" class="negative-list"></div>
+                <label>Add Custom Negatives</label>
+                <input type="text" id="customNegatives" placeholder="e.g. shadows, distortion">
+            </div>
 
             <button onclick="generatePrompt()">🎁 Generate Prompt</button>
-
             <pre id="outputPrompt"></pre>
-        </div>
+        </section>
 
-        <div id="creator" class="tab-content">
-            <h2>🚧 Video Creator (Coming Soon)</h2>
-            <p>This section will let you generate and preview videos using your prompts!</p>
-        </div>
-    </div>
+        <!-- Video Creator Tab -->
+        <section id="videoTab" class="tab-content">
+            <h2>📽️ Video Creator</h2>
+            <label>Paste Prompt</label>
+            <textarea placeholder="Paste your generated prompt here..."></textarea>
+
+            <label>AI Model</label>
+            <select>
+                <option>Sora 2</option>
+                <option>Runway Gen-3</option>
+                <option>Moonvalley AI</option>
+                <option>Pika</option>
+            </select>
+
+            <label>Optional Duration Override</label>
+            <select>
+                <option>No override</option>
+                <option>5 seconds</option>
+                <option>10 seconds</option>
+                <option>15 seconds</option>
+                <option>25 seconds</option>
+            </select>
+
+            <label>Format</label>
+            <select>
+                <option>Text Format (Standard)</option>
+                <option>Text Format (Timestamped Cuts)</option>
+                <option>JSON Format (Standard)</option>
+            </select>
+
+            <button disabled title="Coming soon!">🚀 Generate Video (Coming Soon)</button>
+            <p class="note">Note: Real video generation coming soon — this space will allow downloads, previews, and save options.</p>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>
