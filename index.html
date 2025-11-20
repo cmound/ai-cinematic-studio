@@ -1,1 +1,163 @@
-// Placeholder content for index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Cinematic Studio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 AI Cinematic Studio</h1>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('prompt')">Prompt Generator</button>
+      <button class="tab-button" onclick="showTab('creator')">Video Creator</button>
+    </div>
+
+    <!-- Prompt Generator -->
+    <div id="prompt" class="tab-content active">
+      <h2>📜 Prompt Generator</h2>
+
+      <label>🎬 Scene Description</label>
+      <textarea id="sceneDescription" placeholder="e.g. Futuristic city with flying cars"></textarea>
+
+      <label>🎨 Visual Style</label>
+      <select id="visualStyle">
+        <option>Hyperrealistic</option>
+        <option>Cinematic</option>
+        <option>POV</option>
+        <option>Vintage</option>
+        <option>Anime</option>
+        <option>Commercial</option>
+      </select>
+
+      <label>🎭 Mood</label>
+      <select id="mood">
+        <option>Action Thriller - Fast-Paced, Intense</option>
+        <option>Adventure / Epic</option>
+        <option>Character-Focused</option>
+        <option>Comedy</option>
+        <option>Commercial</option>
+        <option>Dark / Suspenseful</option>
+        <option>Documentary</option>
+        <option>Dramatic</option>
+        <option>Festive</option>
+        <option>Music Video (Stylized, Rhythmic Cuts)</option>
+        <option>Parody</option>
+        <option>Romantic Comedy</option>
+        <option>Satire</option>
+      </select>
+
+      <label>🎥 Camera Movement</label>
+      <select id="cameraMovement">
+        <option>Strategic Shot - Stable, No Movement</option>
+        <option>Dolly Shot - Smooth forward/backward</option>
+        <option>Tracking Shot - Following subject</option>
+        <option>Crane Shot - Vertical movement</option>
+        <option>Handheld - Natural shake</option>
+        <option>Aerial Drone - Bird's eye movement</option>
+        <option>Orbit Shot - Circular around subject</option>
+        <option>Push In - Dramatic zoom approach</option>
+        <option>Pull Back - Revealing movement</option>
+        <option>Steadicam Follow - Smooth tracking</option>
+      </select>
+
+      <label>🌄 Time of Day</label>
+      <select id="timeOfDay">
+        <option>Morning</option>
+        <option>Noon</option>
+        <option>Night</option>
+        <option>Natural Sunlight - Outdoor Daylight</option>
+        <option>Golden Hour - Warm Sunset Glow</option>
+        <option>Blue Hour - Twilight Ambiance</option>
+        <option>Window Light - Soft Indoor Natural</option>
+        <option>Studio Key Light - Professional Setup</option>
+        <option>Practical Lights - In-Scene Sources</option>
+        <option>Neon Lighting - Urban Nighttime</option>
+        <option>Candlelight - Intimate Warm Glow</option>
+        <option>Firelight - Flickering Orange Warmth</option>
+        <option>Led Panels - Modern Film Lighting</option>
+      </select>
+
+      <label>⏱️ Duration (seconds)</label>
+      <select id="duration">
+        <option>15 seconds</option>
+        <option>10 seconds</option>
+        <option>20 seconds</option>
+        <option>25 seconds</option>
+      </select>
+
+      <label>❗ Negative Prompts</label>
+      <div id="negativePrompts"></div>
+
+      <label>Add Custom Negatives</label>
+      <input type="text" id="customNegatives" placeholder="e.g. shadows, distortion" />
+
+      <button onclick="generatePrompt()">🎁 Generate Prompt</button>
+      <div id="output"></div>
+    </div>
+
+    <!-- Video Creator -->
+    <div id="creator" class="tab-content">
+      <h2>🎞️ Video Creator</h2>
+
+      <label><input type="checkbox" id="useGeneratedPrompt" /> Use prompt from Prompt Generator</label>
+      <br />
+      <label><input type="checkbox" id="manualPromptToggle" /> Or manually paste/edit a prompt</label>
+      <textarea id="manualPrompt" placeholder="Paste or edit your prompt here"></textarea>
+
+      <label>🧠 Model Selection</label>
+      <select id="modelSelection" disabled>
+        <option>Sora 2 (default)</option>
+      </select>
+
+      <label>⏳ Video Length</label>
+      <div class="multi-options">
+        <label><input type="checkbox" /> 5s</label>
+        <label><input type="checkbox" /> 8s</label>
+        <label><input type="checkbox" /> 10s</label>
+        <label><input type="checkbox" checked /> 15s</label>
+        <label><input type="checkbox" /> 20s</label>
+        <label><input type="checkbox" /> 25s</label>
+      </div>
+
+      <label>🎬 Scenario</label>
+      <select>
+        <option>Hyperrealistic</option>
+        <option>Cinematic</option>
+        <option>POV</option>
+        <option>Vintage</option>
+        <option>Anime</option>
+        <option>Commercial</option>
+      </select>
+
+      <label>📤 Output Format</label>
+      <div class="multi-options">
+        <label><input type="checkbox" /> Text (Standard)</label>
+        <label><input type="checkbox" /> Text (Timestamped Cuts)</label>
+        <label><input type="checkbox" /> JSON (Standard)</label>
+        <label><input type="checkbox" /> JSON (Timestamped)</label>
+      </div>
+
+      <label>🎞️ Template Style (Optional)</label>
+      <div class="multi-options">
+        <label><input type="checkbox" checked /> Timeline w/ Timestamps (default)</label>
+        <label><input type="checkbox" /> Cinematic Satire (Bronze King)</label>
+        <label><input type="checkbox" /> Add new templates?</label>
+      </div>
+
+      <label>⚠️ Restrictions (Rules)</label>
+      <div class="multi-options">
+        <label><input type="checkbox" /> 👍 No Restrictions, anything goes</label>
+        <label><input type="checkbox" /> ✅ Allow only clean prompts</label>
+        <label><input type="checkbox" /> ⛔ Reject NSFW or flagged prompts</label>
+        <label><input type="checkbox" /> ⚠️ Add warnings before continuing</label>
+        <label><input type="checkbox" /> 🧠 I acknowledge rules</label>
+      </div>
+
+      <button>🚀 Generate Video</button>
+    </div>
+  </div>
+</body>
+</html>
