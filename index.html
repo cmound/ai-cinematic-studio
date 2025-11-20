@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Cinematic Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎬 AI Cinematic Studio</h1>
+    <nav>
+      <button onclick="switchTab('generator')">Prompt Generator</button>
+      <button onclick="switchTab('creator')">Video Creator</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Tab 1: Prompt Generator -->
+    <section id="generatorTab" class="tab active">
+      <h2>Prompt Generator</h2>
+
+      <label>🎞️ Scene Description</label>
+      <textarea id="scene" placeholder="e.g. Futuristic city with flying cars"></textarea>
+
+      <label>🎨 Visual Style</label>
+      <select id="style">
+        <option>Cinematic</option>
+        <option>Anime</option>
+        <option>Hyperrealistic</option>
+        <option>Vintage</option>
+      </select>
+
+      <label>🎭 Mood</label>
+      <select id="mood">
+        <option>Hopeful</option>
+        <option>Suspenseful</option>
+        <option>Dark</option>
+        <option>Epic</option>
+      </select>
+
+      <label>🎥 Camera Movement</label>
+      <select id="camera">
+        <option>Drone Flyover</option>
+        <option>Static Shot</option>
+        <option>Zoom In</option>
+      </select>
+
+      <label>🕰️ Time of Day</label>
+      <select id="time">
+        <option>Morning</option>
+        <option>Sunset</option>
+        <option>Night</option>
+      </select>
+
+      <label>⏱️ Duration (seconds)</label>
+      <input type="number" id="duration" min="5" max="30" value="10" />
+
+      <label>❗ Negative Prompts</label>
+      <div id="negativePrompts"></div>
+
+      <label>Add Custom Negatives</label>
+      <input type="text" id="customNegative" placeholder="e.g. shadows, distortion" />
+
+      <button onclick="generatePrompt()">🎬 Generate Prompt</button>
+      <div id="outputBox"></div>
+    </section>
+
+    <!-- Tab 2: Video Creator -->
+    <section id="creatorTab" class="tab">
+      <h2>Video Creator (Coming Soon...)</h2>
+      <p>This will connect to Runway, Pika, or Sora for real video generation!</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
