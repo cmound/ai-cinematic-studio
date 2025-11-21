@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function generatePrompt() {
     const desc = document.getElementById("sceneDescription").value;
-    const customNeg = document.getElementById("customNegativesToggle").checked;
+    const customNeg = document.getElementById("customNegativesToggle")?.checked || false;
 
     let timeline = `0-3s → Hook\n3-6s → Context\n6-9s → Peak\n9-12s → CTA / Resolution`;
     let tags = `[CAM] Stable\n[VO] Narrated\n[MUSIC] Cinematic\n[EMOTION] Dramatic\n[TRANSITION] Smooth`;
