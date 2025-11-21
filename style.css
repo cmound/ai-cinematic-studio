@@ -43,6 +43,9 @@ textarea {
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333;
+    border-radius: 4px;
 }
 
 select, input[type="checkbox"], input[type="radio"], button {
@@ -57,12 +60,16 @@ fieldset {
 
 legend {
     font-weight: bold;
+    padding: 0 5px;
 }
 
 .char-count, .char-count-result {
     font-weight: bold;
     color: white;
     text-align: right;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 #addToCreator,
@@ -71,25 +78,53 @@ legend {
     color: black;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 12px;
+    margin-top: 15px;
     cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    display: inline-block;
 }
 
 .generate-video,
 button.generate-video {
     background-color: #007bff;
     color: white;
-    padding: 12px 20px;
+    padding: 14px 24px;
     font-size: 16px;
     font-weight: bold;
     border: none;
-    margin-top: 10px;
+    margin-top: 15px;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.checkbox-grid label {
+    display: flex;
+    align-items: center;
     gap: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+input[type="file"] {
+    background-color: #222;
+    color: #ccc;
+    padding: 6px;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+button:hover,
+#addToVideoBtn:hover {
+    opacity: 0.85;
+    transition: 0.2s;
 }
