@@ -1,69 +1,95 @@
 body {
-  background-color: #111;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  padding: 20px;
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-.container {
-  max-width: 800px;
-  margin: auto;
+
+.navbar {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
 }
-h1, h2 {
-  color: #e6e6e6;
-}
-textarea, select, input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  background-color: #1e1e1e;
-  color: #fff;
-  border: 1px solid #444;
-}
-button {
-  background-color: #0099ff;
-  border: none;
-  color: white;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 12px;
-}
-button:hover {
-  background-color: #007acc;
-}
-.tabs {
-  margin-bottom: 20px;
-}
+
 .tab-button {
-  padding: 10px 20px;
-  margin-right: 5px;
-  background-color: #222;
-  color: white;
-  border: none;
-  cursor: pointer;
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
 }
+
 .tab-button.active {
-  background-color: #0099ff;
+    background-color: #007bff;
 }
+
 .tab-content {
-  display: none;
+    display: none;
+    padding: 20px;
 }
+
 .tab-content.active {
-  display: block;
+    display: block;
 }
-.multi-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: both;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
-.multi-options label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+
+select, input[type="checkbox"], input[type="radio"], button {
+    margin: 5px 0;
 }
-#negativePrompts label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+
+fieldset {
+    margin: 15px 0;
+    border: 1px solid #555;
+    padding: 10px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+.char-count, .char-count-result {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+}
+
+#addToCreator,
+#addToVideoBtn {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.generate-video,
+button.generate-video {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 6px;
 }
