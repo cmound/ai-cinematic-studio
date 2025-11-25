@@ -20,7 +20,6 @@
   <div id="prompt" class="page active">
     <h2>📜 Prompt Generator</h2>
 
-    <!-- Scene description with live char count that follows the box -->
     <div class="textarea-wrapper">
       <label class="field-label">Scene description</label>
       <textarea id="sceneDescription" placeholder="Describe your scene..." oninput="updateCharCount(this, 'charCount')"></textarea>
@@ -82,7 +81,6 @@
     <select id="visualStyle">
       <option>Hyper Realistic</option>
       <option>POV</option>
-      <option>Action Thriller (fast-paced, intense)</option>
       <option>Adventure / Epic</option>
       <option>Character-Focused</option>
       <option>Cinematic</option>
@@ -97,6 +95,24 @@
       <option>Parody</option>
       <option>Pixar</option>
       <option>Vintage (black & white)</option>
+    </select>
+
+    <!-- MOOD -->
+    <label class="field-label">🎭 Mood</label>
+    <select id="mood">
+      <option>Action Thriller – Fast-Paced, Intense</option>
+      <option>Adventure / Epic</option>
+      <option>Character-Focused</option>
+      <option>Comedy</option>
+      <option>Commercial</option>
+      <option>Dark / Suspenseful</option>
+      <option>Documentary</option>
+      <option>Dramatic</option>
+      <option>Festive</option>
+      <option>Music Video (Stylized, Rhythmic Cuts)</option>
+      <option>Parody</option>
+      <option>Romantic Comedy</option>
+      <option>Satire</option>
     </select>
 
     <!-- DURATION -->
@@ -142,123 +158,22 @@
       <textarea id="negOtherText" class="neg-other" placeholder="Optional: add your own negatives..." style="display:none"></textarea>
     </fieldset>
 
-    <!-- Upload image (helper) -->
     <label class="field-label">🖼️ Upload image (optional)</label>
     <input type="file" id="uploadImage" accept=".jpeg,.jpg,.png,.webp,.xbm,.tif,.apng,.ico,.jfif,.bmp,.gif"/>
 
-    <!-- Generate prompt action -->
     <button class="primary" onclick="generatePrompt()">📝 GENERATE PROMPT</button>
 
-    <!-- Generated prompt box -->
     <div class="textarea-wrapper">
       <label class="field-label">🎬 Generated prompt</label>
       <textarea id="generatedPrompt" placeholder="Your generated prompt will appear here..." oninput="updateCharCount(this, 'genCharCount')"></textarea>
       <div id="genCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
     </div>
 
-    <!-- Transfer to Video Creator -->
     <button class="highlight" onclick="addToVideoCreator()">📨 ADD TO VIDEO CREATOR PAGE</button>
   </div>
 
   <!-- VIDEO CREATOR -->
   <div id="video" class="page">
     <h2>🎞️ Video Creator</h2>
-
-    <label class="checkbox-row"><input type="checkbox" id="usePrompt" checked onchange="toggleVideoPromptSource()"> Use prompt from Prompt Generator</label>
-    <label class="checkbox-row"><input type="checkbox" id="manualPrompt" onchange="toggleVideoPromptSource()"> Or manually paste/edit a prompt</label>
-
-    <div class="textarea-wrapper">
-      <textarea id="videoPrompt" placeholder="Prompt used to generate video..." oninput="updateCharCount(this, 'videoCharCount')"></textarea>
-      <div id="videoCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
-    </div>
-
-    <h3>🎬 Model selection</h3>
-    <label>Sora 2 (default)</label>
-
-    <h3>🎞️ Video length</h3>
-    <div class="radio-row">
-      <label><input type="radio" name="vlength" value="15" checked> 15s</label>
-      <label><input type="radio" name="vlength" value="5"> 5s</label>
-      <label><input type="radio" name="vlength" value="10"> 10s</label>
-      <label><input type="radio" name="vlength" value="20"> 20s</label>
-      <label><input type="radio" name="vlength" value="25"> 25s</label>
-      <label><input type="radio" name="vlength" value="30"> 30s</label>
-    </div>
-
-    <label>Scenario</label>
-    <select id="scenario">
-      <option>Hyper Realistic</option>
-      <option>Cinematic</option>
-    </select>
-
-    <label class="checkbox-row"><input type="checkbox" id="ackRules"> I acknowledge rules</label>
-
-    <button class="primary" onclick="generateVideo()">✅ GENERATE VIDEO</button>
-    <div id="videoStatus" class="status"></div>
-  </div>
-
-  <!-- VIDEO DASHBOARD -->
-  <div id="dashboard" class="page">
-    <h2>🎞️ Video Dashboard</h2>
-
-    <div class="dashboard-grid">
-      <div>
-        <h3>Video drafts</h3>
-        <div id="draftsList" class="card-list"></div>
-      </div>
-      <div>
-        <h3>Published videos</h3>
-        <div id="publishedList" class="card-list"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- IMAGE GENERATOR -->
-  <div id="image" class="page">
-    <h2>🖼️ Image Generator</h2>
-
-    <div class="textarea-wrapper">
-      <textarea id="imagePrompt" placeholder="Describe the image you want..." oninput="updateCharCount(this, 'imageCharCount')"></textarea>
-      <div id="imageCharCount" class="char-counter">Total Character Count = 0</div>
-    </div>
-
-    <label>Or upload an image:</label>
-    <input type="file" id="imageUpload" accept=".jpeg,.jpg,.png,.webp,.xbm,.tif,.apng,.ico,.jfif,.bmp,.gif"/>
-
-    <label>Choose image style:</label>
-    <select id="imageStyle">
-      <option>Hyper Realistic Image</option>
-      <option>Realistic Avatar</option>
-      <option>AI Polished up Professional Picture</option>
-      <option>Pixar Character</option>
-      <option>Anime Character</option>
-      <option>AI Profile Picture</option>
-    </select>
-
-    <label class="field-label">🎯 Content type</label>
-    <div class="checkbox-grid" id="imageContent">
-      <label><input type="checkbox"> Adult Themes – Viewer Discretion Advised(18+)</label>
-      <label><input type="checkbox"> Intense Themes</label>
-      <label><input type="checkbox"> Horror</label>
-      <label><input type="checkbox"> War or Combat Realism</label>
-      <label><input type="checkbox"> Surreal or Abstract Imagery</label>
-      <label><input type="checkbox"> Hyper Realistic</label>
-      <label><input type="checkbox"> Hyper Realistic, Unrestricted</label>
-      <label><input type="checkbox"> Sexual Themes / Adult Situations</label>
-      <label><input type="checkbox"> Nudity or Intimate Content (Not for All Audiences)</label>
-    </div>
-
-    <button class="primary" onclick="generateImage()">🖼️ Generate Image</button>
-    <div id="imageStatus" class="status"></div>
-  </div>
-
-  <!-- GENERATED LIBRARY -->
-  <div id="library" class="page">
-    <h2>📂 Generated Library</h2>
-    <p>Your generated content will appear here.</p>
-    <div id="libraryList" class="card-list"></div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+    <label><input type="checkbox" id="usePrompt" checked onchange="toggleVideoPromptSource()"> Use prompt from Prompt Generator</label>
+    <label><input type
