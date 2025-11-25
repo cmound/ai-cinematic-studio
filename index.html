@@ -1,179 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Cinematic Studio</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cinematic Studio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Top navigation -->
-  <div class="navbar">
-    <button class="tab-button active" onclick="navigate('prompt')">📜 Prompt Generator</button>
-    <button class="tab-button" onclick="navigate('video')">🎞️ Video Creator</button>
-    <button class="tab-button" onclick="navigate('dashboard')">🎞️ Video Dashboard</button>
-    <button class="tab-button" onclick="navigate('image')">🖼️ Image Generator</button>
-    <button class="tab-button" onclick="navigate('library')">📂 Generated Library</button>
-  </div>
+    <div class="container">
+        <h1>🎬 AI Cinematic Studio</h1>
 
-  <!-- PROMPT GENERATOR -->
-  <div id="prompt" class="page active">
-    <h2>📜 Prompt Generator</h2>
+        <div class="tabs" role="tablist" aria-label="Studio Sections">
+            <button class="tab-button active" role="tab" aria-selected="true" onclick="showTab('prompt')">Prompt Generator</button>
+            <button class="tab-button" role="tab" aria-selected="false" onclick="showTab('creator')">Video Creator</button>
+        </div>
 
-    <div class="textarea-wrapper">
-      <label class="field-label">Scene description</label>
-      <textarea id="sceneDescription" placeholder="Describe your scene..." oninput="updateCharCount(this, 'charCount')"></textarea>
-      <div id="charCount" class="char-counter">Total Character Count = 0</div>
+        <!-- Prompt Generator -->
+        <section id="prompt" class="tab-content active" role="tabpanel" aria-label="Prompt Generator">
+            <h2>📝 Prompt Generator</h2>
+
+            <label for="sceneDescription">🎬 Scene Description</label>
+            <textarea id="sceneDescription" placeholder="e.g., Futuristic city with flying cars"></textarea>
+
+            <div class="controls">
+                <div>
+                    <label for="visualStyle">🎨 Visual Style</label>
+                    <select id="visualStyle">
+                        <option>Hyperrealistic</option>
+                        <option>Cinematic</option>
+                        <option>POV</option>
+                        <option>Vintage</option>
+                        <option>Anime</option>
+                        <option>Commercial</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="mood">🎭 Mood</label>
+                    <select id="mood">
+                        <option>Action Thriller - Fast-Paced, Intense</option>
+                        <option>Adventure / Epic</option>
+                        <option>Character-Focused</option>
+                        <option>Comedy</option>
+                        <option>Dark / Suspenseful</option>
+                        <option>Dramatic</option>
+                        <option>Romantic Comedy</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="cameraMovement">🎥 Camera Movement</label>
+                    <select id="cameraMovement">
+                        <option>Stable Shot</option>
+                        <option>Dolly Shot</option>
+                        <option>Tracking Shot</option>
+                        <option>Crane Shot</option>
+                        <option>Handheld</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="timeOfDay">🕯️ Time of Day</label>
+                    <select id="timeOfDay">
+                        <option>Morning</option>
+                        <option>Noon</option>
+                        <option>Night</option>
+                        <option>Golden Hour</option>
+                        <option>Blue Hour</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>Negative Prompts</h3>
+            <div class="negatives">
+                <label><input type="checkbox" value="blurry"> blurry</label>
+                <label><input type="checkbox" value="low res"> low res</label>
+                <label><input type="checkbox" value="jpeg artifacts"> jpeg artifacts</label>
+                <label><input type="checkbox" value="distorted"> distorted</label>
+                <label><input type="checkbox" value="worst quality"> worst quality</label>
+            </div>
+
+            <label for="customNegatives">Add Custom Negatives</label>
+            <input id="customNegatives" type="text" placeholder="e.g., deformed hands">
+
+            <div class="actions">
+                <button id="generatePrompt" class="primary">Generate Prompt</button>
+                <button id="copyPrompt" class="secondary">Copy Prompt</button>
+            </div>
+
+            <label for="promptOutput">Generated Prompt</label>
+            <textarea id="promptOutput" placeholder="Your prompt will appear here..."></textarea>
+        </section>
+
+        <!-- Video Creator -->
+        <section id="creator" class="tab-content" role="tabpanel" aria-label="Video Creator">
+            <h2>🎞️ Video Creator</h2>
+            <p>Coming soon...</p>
+        </section>
     </div>
 
-    <!-- TIME OF DAY -->
-    <label class="field-label">🌤️ Time of day</label>
-    <select id="timeOfDay">
-      <option>Auto</option>
-      <option>Morning</option>
-      <option>Noon</option>
-      <option>Night</option>
-      <option>Natural Sunlight - Outdoor Daylight</option>
-      <option>Golden Hour - Warm Sunset Glow</option>
-      <option>Blue Hour - Twilight Ambiance</option>
-      <option>Window Light - Soft Indoor Natural</option>
-      <option>Studio Key Light - Professional Setup</option>
-      <option>Practical Lights - In-Scene Sources</option>
-      <option>Neon Lighting - Urban Nighttime</option>
-      <option>Candlelight - Intimate Warm Glow</option>
-      <option>Firelight - Flickering Orange Warmth</option>
-      <option>Led Panels - Modern Film Lighting</option>
-    </select>
-
-    <!-- CAMERA MOVEMENT -->
-    <label class="field-label">🎬 Camera movement</label>
-    <select id="cameraMovement">
-      <option>Auto</option>
-      <option>Strategic Shot – Stable</option>
-      <option>No Movement</option>
-      <option>Dolly Shot - Smooth forward/backward</option>
-      <option>Tracking Shot - Following subject</option>
-      <option>Crane Shot - Vertical movement</option>
-      <option>Handheld - Natural shake</option>
-      <option>Aerial Drone - Bird's eye movement</option>
-      <option>Orbit Shot - Circular around subject</option>
-      <option>Push In - Dramatic zoom approach</option>
-      <option>Pull Back - Revealing movement</option>
-      <option>Steadicam Follow - Smooth tracking</option>
-    </select>
-
-    <!-- CONTENT TYPE -->
-    <label class="field-label">🎯 Content type</label>
-    <select id="contentType">
-      <option>Adult Themes – Viewer Discretion Advised(18+)</option>
-      <option>Intense Themes</option>
-      <option>Horror</option>
-      <option>War or Combat Realism</option>
-      <option>Surreal or Abstract Imagery</option>
-      <option>Hyper Realistic</option>
-      <option>Hyper Realistic, Unrestricted</option>
-      <option>Sexual Themes / Adult Situations</option>
-      <option>Nudity or Intimate Content (Not for All Audiences)</option>
-    </select>
-
-    <!-- VISUAL STYLE -->
-    <label class="field-label">🎥 Visual style</label>
-    <select id="visualStyle">
-      <option>Hyper Realistic</option>
-      <option>POV</option>
-      <option>Adventure / Epic</option>
-      <option>Character-Focused</option>
-      <option>Cinematic</option>
-      <option>Comedy</option>
-      <option>Commercial</option>
-      <option>Dark / Suspenseful</option>
-      <option>Documentary</option>
-      <option>Dramatic</option>
-      <option>Festive</option>
-      <option>Music Video (Stylized, Rhythmic Cuts)</option>
-      <option>Satire</option>
-      <option>Parody</option>
-      <option>Pixar</option>
-      <option>Vintage (black & white)</option>
-    </select>
-
-    <!-- MOOD -->
-    <label class="field-label">🎭 Mood</label>
-    <select id="mood">
-      <option>Action Thriller – Fast-Paced, Intense</option>
-      <option>Adventure / Epic</option>
-      <option>Character-Focused</option>
-      <option>Comedy</option>
-      <option>Commercial</option>
-      <option>Dark / Suspenseful</option>
-      <option>Documentary</option>
-      <option>Dramatic</option>
-      <option>Festive</option>
-      <option>Music Video (Stylized, Rhythmic Cuts)</option>
-      <option>Parody</option>
-      <option>Romantic Comedy</option>
-      <option>Satire</option>
-    </select>
-
-    <!-- DURATION -->
-    <label class="field-label">⏱️ Duration</label>
-    <select id="duration">
-      <option>15</option>
-      <option>10</option>
-      <option>20</option>
-      <option>25</option>
-      <option>30</option>
-    </select>
-
-    <!-- OUTPUT FORMAT -->
-    <label class="field-label">📃 Output format</label>
-    <select id="outputFormat">
-      <option>Text Format (Timestamped Cuts)</option>
-      <option>Text Format (Standard)</option>
-      <option>JSON Format (Timestamped Cuts)</option>
-      <option>JSON Format (Standard)</option>
-    </select>
-
-    <!-- NEGATIVE PROMPTS -->
-    <fieldset class="fieldset">
-      <legend>🔎 Negative prompts</legend>
-      <div class="checkbox-grid" id="negatives">
-        <label><input type="checkbox" checked> Extra Limbs</label>
-        <label><input type="checkbox" checked> Extra Body Parts</label>
-        <label><input type="checkbox" checked> Low Quality</label>
-        <label><input type="checkbox" checked> Blurry</label>
-        <label><input type="checkbox" checked> Worst Quality</label>
-        <label><input type="checkbox" checked> Low Res</label>
-        <label><input type="checkbox" checked> JPEG Artifacts</label>
-        <label><input type="checkbox" checked> Grainy</label>
-        <label><input type="checkbox" checked> Pixelated</label>
-        <label><input type="checkbox" checked> Color Aberration</label>
-        <label><input type="checkbox" checked> Ugly</label>
-        <label><input type="checkbox" checked> Deformed</label>
-        <label><input type="checkbox" checked> Disfigured</label>
-        <label><input type="checkbox" checked> Distorted</label>
-        <label><input type="checkbox" checked> Misshapen</label>
-        <label><input type="checkbox" id="negOther"> Other</label>
-      </div>
-      <textarea id="negOtherText" class="neg-other" placeholder="Optional: add your own negatives..." style="display:none"></textarea>
-    </fieldset>
-
-    <label class="field-label">🖼️ Upload image (optional)</label>
-    <input type="file" id="uploadImage" accept=".jpeg,.jpg,.png,.webp,.xbm,.tif,.apng,.ico,.jfif,.bmp,.gif"/>
-
-    <button class="primary" onclick="generatePrompt()">📝 GENERATE PROMPT</button>
-
-    <div class="textarea-wrapper">
-      <label class="field-label">🎬 Generated prompt</label>
-      <textarea id="generatedPrompt" placeholder="Your generated prompt will appear here..." oninput="updateCharCount(this, 'genCharCount')"></textarea>
-      <div id="genCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
-    </div>
-
-    <button class="highlight" onclick="addToVideoCreator()">📨 ADD TO VIDEO CREATOR PAGE</button>
-  </div>
-
-  <!-- VIDEO CREATOR -->
-  <div id="video" class="page">
-    <h2>🎞️ Video Creator</h2>
-    <label><input type="checkbox" id="usePrompt" checked onchange="toggleVideoPromptSource()"> Use prompt from Prompt Generator</label>
-    <label><input type
+    <script src="app.js"></script>
+</body>
+</html>
