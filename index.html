@@ -7,35 +7,85 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="nav">
-    <button onclick="navigate('prompt')">📜 Prompt Generator</button>
-    <button onclick="navigate('video')">🎞️ Video Creator</button>
-    <button onclick="navigate('image')">🖼️ Image Generator</button>
-    <button onclick="navigate('library')">📂 Generated Library</button>
+  <!-- Top navigation -->
+  <div class="navbar">
+    <button class="tab-button active" onclick="navigate('prompt')">📜 Prompt Generator</button>
+    <button class="tab-button" onclick="navigate('video')">🎞️ Video Creator</button>
+    <button class="tab-button" onclick="navigate('dashboard')">🎞️ Video Dashboard</button>
+    <button class="tab-button" onclick="navigate('image')">🖼️ Image Generator</button>
+    <button class="tab-button" onclick="navigate('library')">📂 Generated Library</button>
   </div>
 
   <!-- PROMPT GENERATOR -->
-  <div id="prompt" class="page">
+  <div id="prompt" class="page active">
     <h2>📜 Prompt Generator</h2>
-    <label>Scene Description</label>
-    <textarea id="sceneDescription" oninput="updateCharCount(this, 'charCount')"></textarea>
-    <div id="charCount" class="char-counter">Total Character Count = 0</div>
 
-    <label>🎥 Visual Style</label>
-    <select id="visualStyle">
-      <option>Hyper Realistic</option>
-      <option>Cinematic</option>
-      <option>POV</option>
-      <option>Vintage</option>
-      <option>Anime</option>
-      <option>Commercial</option>
+    <!-- Scene description with live char count that follows the box -->
+    <div class="textarea-wrapper">
+      <label class="field-label">Scene description</label>
+      <textarea id="sceneDescription" placeholder="Describe your scene..." oninput="updateCharCount(this, 'charCount')"></textarea>
+      <div id="charCount" class="char-counter">Total Character Count = 0</div>
+    </div>
+
+    <!-- TIME OF DAY -->
+    <label class="field-label">🌤️ Time of day</label>
+    <select id="timeOfDay">
+      <option>Auto</option>
+      <option>Morning</option>
+      <option>Noon</option>
+      <option>Night</option>
+      <option>Natural Sunlight - Outdoor Daylight</option>
+      <option>Golden Hour - Warm Sunset Glow</option>
+      <option>Blue Hour - Twilight Ambiance</option>
+      <option>Window Light - Soft Indoor Natural</option>
+      <option>Studio Key Light - Professional Setup</option>
+      <option>Practical Lights - In-Scene Sources</option>
+      <option>Neon Lighting - Urban Nighttime</option>
+      <option>Candlelight - Intimate Warm Glow</option>
+      <option>Firelight - Flickering Orange Warmth</option>
+      <option>Led Panels - Modern Film Lighting</option>
     </select>
 
-    <label>🎭 Mood</label>
-    <select id="mood">
-      <option>Action Thriller – Fast-Paced, Intense</option>
+    <!-- CAMERA MOVEMENT -->
+    <label class="field-label">🎬 Camera movement</label>
+    <select id="cameraMovement">
+      <option>Auto</option>
+      <option>Strategic Shot – Stable</option>
+      <option>No Movement</option>
+      <option>Dolly Shot - Smooth forward/backward</option>
+      <option>Tracking Shot - Following subject</option>
+      <option>Crane Shot - Vertical movement</option>
+      <option>Handheld - Natural shake</option>
+      <option>Aerial Drone - Bird's eye movement</option>
+      <option>Orbit Shot - Circular around subject</option>
+      <option>Push In - Dramatic zoom approach</option>
+      <option>Pull Back - Revealing movement</option>
+      <option>Steadicam Follow - Smooth tracking</option>
+    </select>
+
+    <!-- CONTENT TYPE -->
+    <label class="field-label">🎯 Content type</label>
+    <select id="contentType">
+      <option>Adult Themes – Viewer Discretion Advised(18+)</option>
+      <option>Intense Themes</option>
+      <option>Horror</option>
+      <option>War or Combat Realism</option>
+      <option>Surreal or Abstract Imagery</option>
+      <option>Hyper Realistic</option>
+      <option>Hyper Realistic, Unrestricted</option>
+      <option>Sexual Themes / Adult Situations</option>
+      <option>Nudity or Intimate Content (Not for All Audiences)</option>
+    </select>
+
+    <!-- VISUAL STYLE -->
+    <label class="field-label">🎥 Visual style</label>
+    <select id="visualStyle">
+      <option>Hyper Realistic</option>
+      <option>POV</option>
+      <option>Action Thriller (fast-paced, intense)</option>
       <option>Adventure / Epic</option>
       <option>Character-Focused</option>
+      <option>Cinematic</option>
       <option>Comedy</option>
       <option>Commercial</option>
       <option>Dark / Suspenseful</option>
@@ -43,131 +93,140 @@
       <option>Dramatic</option>
       <option>Festive</option>
       <option>Music Video (Stylized, Rhythmic Cuts)</option>
-      <option>Parody</option>
-      <option>Romantic Comedy</option>
       <option>Satire</option>
+      <option>Parody</option>
+      <option>Pixar</option>
+      <option>Vintage (black & white)</option>
     </select>
 
-    <label>🎬 Camera Movement</label>
-    <select id="cameraMovement">
-      <option>Strategic Shot – Stable, No Movement</option>
-      <option>Dolly Shot – Smooth Forward/Backward</option>
-      <option>Tracking Shot – Following Subject</option>
-      <option>Crane Shot – Vertical Movement</option>
-      <option>Handheld – Natural Shake</option>
-      <option>Aerial Drone – Bird’s Eye Movement</option>
-      <option>Orbit Shot – Circular Around Subject</option>
-      <option>Push In – Dramatic Zoom Approach</option>
-      <option>Pull Back – Revealing Movement</option>
-      <option>Steadicam Follow – Smooth Tracking</option>
-    </select>
-
-    <label>🌤️ Time of Day</label>
-    <select id="timeOfDay">
-      <option>Morning</option>
-      <option>Noon</option>
-      <option>Night</option>
-      <option>Natural Sunlight – Outdoor Daylight</option>
-      <option>Golden Hour – Warm Sunset Glow</option>
-      <option>Blue Hour – Twilight Ambiance</option>
-      <option>Window Light – Soft Indoor Natural</option>
-      <option>Studio Key Light – Professional Setup</option>
-      <option>Practical Lights – In-Scene Sources</option>
-      <option>Neon Lighting – Urban Nighttime</option>
-      <option>Candlelight – Intimate Warm Glow</option>
-      <option>Firelight – Flickering Orange Warmth</option>
-      <option>LED Panels – Modern Film Lighting</option>
-    </select>
-
-    <label>⏱️ Duration (seconds)</label>
+    <!-- DURATION -->
+    <label class="field-label">⏱️ Duration</label>
     <select id="duration">
-      <option>5</option>
+      <option>15</option>
       <option>10</option>
-      <option selected>15</option>
       <option>20</option>
       <option>25</option>
+      <option>30</option>
     </select>
 
-    <div>
-      <label class="checkbox"><input type="checkbox" checked disabled> Negative Prompts</label>
+    <!-- OUTPUT FORMAT -->
+    <label class="field-label">📃 Output format</label>
+    <select id="outputFormat">
+      <option>Text Format (Timestamped Cuts)</option>
+      <option>Text Format (Standard)</option>
+      <option>JSON Format (Timestamped Cuts)</option>
+      <option>JSON Format (Standard)</option>
+    </select>
+
+    <!-- NEGATIVE PROMPTS -->
+    <fieldset class="fieldset">
+      <legend>🔎 Negative prompts</legend>
       <div class="checkbox-grid" id="negatives">
-        <label><input type="checkbox" checked> blurry</label>
-        <label><input type="checkbox" checked> low res</label>
-        <label><input type="checkbox" checked> ugly</label>
-        <label><input type="checkbox" checked> jpeg artifacts</label>
-        <label><input type="checkbox" checked> distorted</label>
-        <label><input type="checkbox" checked> worst quality</label>
-        <label><input type="checkbox" checked> misshapen</label>
-        <label><input type="checkbox" checked> deformed</label>
+        <label><input type="checkbox" checked> Extra Limbs</label>
+        <label><input type="checkbox" checked> Extra Body Parts</label>
+        <label><input type="checkbox" checked> Low Quality</label>
+        <label><input type="checkbox" checked> Blurry</label>
+        <label><input type="checkbox" checked> Worst Quality</label>
+        <label><input type="checkbox" checked> Low Res</label>
+        <label><input type="checkbox" checked> JPEG Artifacts</label>
+        <label><input type="checkbox" checked> Grainy</label>
+        <label><input type="checkbox" checked> Pixelated</label>
+        <label><input type="checkbox" checked> Color Aberration</label>
+        <label><input type="checkbox" checked> Ugly</label>
+        <label><input type="checkbox" checked> Deformed</label>
+        <label><input type="checkbox" checked> Disfigured</label>
+        <label><input type="checkbox" checked> Distorted</label>
+        <label><input type="checkbox" checked> Misshapen</label>
+        <label><input type="checkbox" id="negOther"> Other</label>
       </div>
+      <textarea id="negOtherText" class="neg-other" placeholder="Optional: add your own negatives..." style="display:none"></textarea>
+    </fieldset>
+
+    <!-- Upload image (helper) -->
+    <label class="field-label">🖼️ Upload image (optional)</label>
+    <input type="file" id="uploadImage" accept=".jpeg,.jpg,.png,.webp,.xbm,.tif,.apng,.ico,.jfif,.bmp,.gif"/>
+
+    <!-- Generate prompt action -->
+    <button class="primary" onclick="generatePrompt()">📝 GENERATE PROMPT</button>
+
+    <!-- Generated prompt box -->
+    <div class="textarea-wrapper">
+      <label class="field-label">🎬 Generated prompt</label>
+      <textarea id="generatedPrompt" placeholder="Your generated prompt will appear here..." oninput="updateCharCount(this, 'genCharCount')"></textarea>
+      <div id="genCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
     </div>
 
-    <label class="checkbox">
-      <input type="checkbox" id="highlightViolations"> Add Custom Negatives (highlight content violations)
-    </label>
-
-    <button onclick="generatePrompt()">🎬 Generate Prompt</button>
-    <div id="generatedPrompt"></div>
-    <div id="genCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
-
-    <label>🎯 Content Type</label>
-    <div class="checkbox-grid" id="contentType">
-      <label><input type="checkbox"> G</label>
-      <label><input type="checkbox"> PG</label>
-      <label><input type="checkbox"> PG 13</label>
-      <label><input type="checkbox"> Ages 13 to 18</label>
-      <label><input type="checkbox"> Mature Audience Only, 18+</label>
-      <label><input type="checkbox"> Intense Themes</label>
-      <label><input type="checkbox"> Horror</label>
-      <label><input type="checkbox"> War or Combat Realism</label>
-      <label><input type="checkbox"> Surreal or Abstract Imagery</label>
-      <label><input type="checkbox"> Hyper Realistic</label>
-      <label><input type="checkbox"> Hyper Realistic, Unrestricted</label>
-      <label><input type="checkbox"> X-Rated</label>
-    </div>
-
+    <!-- Transfer to Video Creator -->
     <button class="highlight" onclick="addToVideoCreator()">📨 ADD TO VIDEO CREATOR PAGE</button>
   </div>
 
   <!-- VIDEO CREATOR -->
-  <div id="video" class="page" style="display:none">
+  <div id="video" class="page">
     <h2>🎞️ Video Creator</h2>
-    <label><input type="checkbox" id="usePrompt" checked> Use prompt from Prompt Generator</label>
-    <label><input type="checkbox" id="manualPrompt"> Or manually paste/edit a prompt</label>
-    <textarea id="videoPrompt"></textarea>
-    <div id="videoCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
 
-    <h3>🎬 Model Selection</h3>
+    <label class="checkbox-row"><input type="checkbox" id="usePrompt" checked onchange="toggleVideoPromptSource()"> Use prompt from Prompt Generator</label>
+    <label class="checkbox-row"><input type="checkbox" id="manualPrompt" onchange="toggleVideoPromptSource()"> Or manually paste/edit a prompt</label>
+
+    <div class="textarea-wrapper">
+      <textarea id="videoPrompt" placeholder="Prompt used to generate video..." oninput="updateCharCount(this, 'videoCharCount')"></textarea>
+      <div id="videoCharCount" class="char-counter">TOTAL GENERATED CHARACTER COUNT = 0</div>
+    </div>
+
+    <h3>🎬 Model selection</h3>
     <label>Sora 2 (default)</label>
 
-    <h3>🎞️ Video Length</h3>
-    <label><input type="radio" name="vlength" checked> 15s</label>
-    <label><input type="radio" name="vlength"> 5s</label>
-    <label><input type="radio" name="vlength"> 10s</label>
-    <label><input type="radio" name="vlength"> 20s</label>
-    <label><input type="radio" name="vlength"> 25s</label>
+    <h3>🎞️ Video length</h3>
+    <div class="radio-row">
+      <label><input type="radio" name="vlength" value="15" checked> 15s</label>
+      <label><input type="radio" name="vlength" value="5"> 5s</label>
+      <label><input type="radio" name="vlength" value="10"> 10s</label>
+      <label><input type="radio" name="vlength" value="20"> 20s</label>
+      <label><input type="radio" name="vlength" value="25"> 25s</label>
+      <label><input type="radio" name="vlength" value="30"> 30s</label>
+    </div>
 
     <label>Scenario</label>
-    <select>
+    <select id="scenario">
       <option>Hyper Realistic</option>
       <option>Cinematic</option>
     </select>
 
-    <label><input type="checkbox"> I acknowledge rules</label>
-    <button onclick="generateVideo()">🚀 Generate Video</button>
+    <label class="checkbox-row"><input type="checkbox" id="ackRules"> I acknowledge rules</label>
+
+    <button class="primary" onclick="generateVideo()">✅ GENERATE VIDEO</button>
+    <div id="videoStatus" class="status"></div>
+  </div>
+
+  <!-- VIDEO DASHBOARD -->
+  <div id="dashboard" class="page">
+    <h2>🎞️ Video Dashboard</h2>
+
+    <div class="dashboard-grid">
+      <div>
+        <h3>Video drafts</h3>
+        <div id="draftsList" class="card-list"></div>
+      </div>
+      <div>
+        <h3>Published videos</h3>
+        <div id="publishedList" class="card-list"></div>
+      </div>
+    </div>
   </div>
 
   <!-- IMAGE GENERATOR -->
-  <div id="image" class="page" style="display:none">
+  <div id="image" class="page">
     <h2>🖼️ Image Generator</h2>
-    <textarea id="imagePrompt" oninput="updateCharCount(this, 'imageCharCount')"></textarea>
-    <div id="imageCharCount" class="char-counter">Total Character Count = 0</div>
+
+    <div class="textarea-wrapper">
+      <textarea id="imagePrompt" placeholder="Describe the image you want..." oninput="updateCharCount(this, 'imageCharCount')"></textarea>
+      <div id="imageCharCount" class="char-counter">Total Character Count = 0</div>
+    </div>
 
     <label>Or upload an image:</label>
-    <input type="file" id="uploadImage"/>
+    <input type="file" id="imageUpload" accept=".jpeg,.jpg,.png,.webp,.xbm,.tif,.apng,.ico,.jfif,.bmp,.gif"/>
 
-    <label>Choose Image Style:</label>
-    <select>
+    <label>Choose image style:</label>
+    <select id="imageStyle">
       <option>Hyper Realistic Image</option>
       <option>Realistic Avatar</option>
       <option>AI Polished up Professional Picture</option>
@@ -176,18 +235,28 @@
       <option>AI Profile Picture</option>
     </select>
 
-    <label>🎯 Content Type</label>
+    <label class="field-label">🎯 Content type</label>
     <div class="checkbox-grid" id="imageContent">
-      <!-- Same content types -->
+      <label><input type="checkbox"> Adult Themes – Viewer Discretion Advised(18+)</label>
+      <label><input type="checkbox"> Intense Themes</label>
+      <label><input type="checkbox"> Horror</label>
+      <label><input type="checkbox"> War or Combat Realism</label>
+      <label><input type="checkbox"> Surreal or Abstract Imagery</label>
+      <label><input type="checkbox"> Hyper Realistic</label>
+      <label><input type="checkbox"> Hyper Realistic, Unrestricted</label>
+      <label><input type="checkbox"> Sexual Themes / Adult Situations</label>
+      <label><input type="checkbox"> Nudity or Intimate Content (Not for All Audiences)</label>
     </div>
 
-    <button onclick="generateImage()">🖼️ Generate Image</button>
+    <button class="primary" onclick="generateImage()">🖼️ Generate Image</button>
+    <div id="imageStatus" class="status"></div>
   </div>
 
   <!-- GENERATED LIBRARY -->
-  <div id="library" class="page" style="display:none">
+  <div id="library" class="page">
     <h2>📂 Generated Library</h2>
     <p>Your generated content will appear here.</p>
+    <div id="libraryList" class="card-list"></div>
   </div>
 
   <script src="app.js"></script>
