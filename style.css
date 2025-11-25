@@ -1,130 +1,217 @@
+/* Base */
 body {
-    background-color: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  background-color: #0f1115;
+  color: #e9eef5;
+  font-family: Inter, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Navbar and tabs */
 .navbar {
-    display: flex;
-    background-color: #333;
-    padding: 10px;
+  display: flex;
+  gap: 8px;
+  background-color: #161a22;
+  padding: 10px;
+  border-bottom: 1px solid #232a36;
 }
 
 .tab-button {
-    background-color: #444;
-    color: white;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    cursor: pointer;
+  background-color: #222836;
+  color: #e9eef5;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .tab-button.active {
-    background-color: #007bff;
+  background-color: #2f80ed;
+  color: #fff;
 }
 
-.tab-content {
-    display: none;
-    padding: 20px;
+/* Pages */
+.page {
+  display: none;
+  padding: 20px;
 }
 
-.tab-content.active {
-    display: block;
+.page.active {
+  display: block;
+}
+
+/* Labels and inputs */
+.field-label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+select, input[type="checkbox"], input[type="radio"], button, input[type="file"] {
+  margin: 6px 0;
+}
+
+select, input[type="file"] {
+  background: #171b24;
+  color: #e9eef5;
+  border: 1px solid #2a3242;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Textareas with wrapper to anchor char counter */
+.textarea-wrapper {
+  position: relative;
+  margin: 12px 0;
 }
 
 textarea {
-    width: 100%;
-    min-height: 100px;
-    resize: both;
-    background: #222;
-    color: #fff;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    border: 1px solid #333;
-    border-radius: 4px;
+  width: 100%;
+  min-height: 120px;
+  resize: both;
+  background: #171b24;
+  color: #e9eef5;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #2a3242;
+  border-radius: 8px;
 }
 
-select, input[type="checkbox"], input[type="radio"], button {
-    margin: 5px 0;
+/* Char counter follows the bottom-right corner via JS resize/position */
+.char-counter {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-weight: 700;
+  color: #c9d7f2;
+  font-size: 13px;
+  pointer-events: none;
 }
 
-fieldset {
-    margin: 15px 0;
-    border: 1px solid #555;
-    padding: 10px;
+/* Fieldset and grid */
+.fieldset {
+  margin: 15px 0;
+  border: 1px solid #2a3242;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 legend {
-    font-weight: bold;
-    padding: 0 5px;
-}
-
-.char-count, .char-count-result {
-    font-weight: bold;
-    color: white;
-    text-align: right;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-#addToCreator,
-#addToVideoBtn {
-    background-color: yellow;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 12px;
-    margin-top: 15px;
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-    display: inline-block;
-}
-
-.generate-video,
-button.generate-video {
-    background-color: #007bff;
-    color: white;
-    padding: 14px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    margin-top: 15px;
-    cursor: pointer;
-    border-radius: 6px;
+  font-weight: 700;
+  padding: 0 5px;
 }
 
 .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 8px;
-    align-items: center;
-    padding: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .checkbox-grid label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-input[type="file"] {
-    background-color: #222;
-    color: #ccc;
-    padding: 6px;
-    border: 1px solid #444;
-    border-radius: 4px;
+/* Buttons */
+button {
+  background-color: #2a3242;
+  color: #e9eef5;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
-button:hover,
-#addToVideoBtn:hover {
-    opacity: 0.85;
-    transition: 0.2s;
+button.primary {
+  background-color: #2f80ed;
+}
+
+button.highlight {
+  background-color: #ffd400;
+  color: #1a1a1a;
+}
+
+button:hover {
+  opacity: 0.92;
+  transition: 0.2s ease;
+}
+
+/* Negative prompts custom text */
+.neg-other {
+  width: 100%;
+  min-height: 90px;
+  margin-top: 8px;
+}
+
+/* Radio and checkbox rows */
+.radio-row, .checkbox-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 8px 0 16px;
+}
+
+/* Status messages */
+.status {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Dashboard and cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #171b24;
+  border: 1px solid #2a3242;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.card h4 {
+  margin: 0 0 6px;
+}
+
+.card .meta {
+  font-size: 12px;
+  color: #9fb2d9;
+  margin-bottom: 8px;
+}
+
+.card .actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button.small {
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+/* Library */
+#libraryList .card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
