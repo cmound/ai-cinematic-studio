@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cinematic Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 AI Cinematic Studio</h1>
+
+        <div class="tabs" role="tablist" aria-label="Studio Sections">
+            <button class="tab-button active" role="tab" aria-selected="true" onclick="showTab('prompt')">Prompt Generator</button>
+            <button class="tab-button" role="tab" aria-selected="false" onclick="showTab('creator')">Video Creator</button>
+        </div>
+
+        <!-- Prompt Generator -->
+        <section id="prompt" class="tab-content active" role="tabpanel" aria-label="Prompt Generator">
+            <h2>📝 Prompt Generator</h2>
+
+            <label for="sceneDescription">🎬 Scene Description</label>
+            <textarea id="sceneDescription" placeholder="e.g., Futuristic city with flying cars"></textarea>
+
+            <div class="controls">
+                <div>
+                    <label for="visualStyle">🎨 Visual Style</label>
+                    <select id="visualStyle">
+                        <option>Hyperrealistic</option>
+                        <option>Cinematic</option>
+                        <option>POV</option>
+                        <option>Vintage</option>
+                        <option>Anime</option>
+                        <option>Commercial</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="mood">🎭 Mood</label>
+                    <select id="mood">
+                        <option>Action Thriller - Fast-Paced, Intense</option>
+                        <option>Adventure / Epic</option>
+                        <option>Character-Focused</option>
+                        <option>Comedy</option>
+                        <option>Dark / Suspenseful</option>
+                        <option>Dramatic</option>
+                        <option>Romantic Comedy</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="cameraMovement">🎥 Camera Movement</label>
+                    <select id="cameraMovement">
+                        <option>Stable Shot</option>
+                        <option>Dolly Shot</option>
+                        <option>Tracking Shot</option>
+                        <option>Crane Shot</option>
+                        <option>Handheld</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="timeOfDay">🕯️ Time of Day</label>
+                    <select id="timeOfDay">
+                        <option>Morning</option>
+                        <option>Noon</option>
+                        <option>Night</option>
+                        <option>Golden Hour</option>
+                        <option>Blue Hour</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>Negative Prompts</h3>
+            <div class="negatives">
+                <label><input type="checkbox" value="blurry"> blurry</label>
+                <label><input type="checkbox" value="low res"> low res</label>
+                <label><input type="checkbox" value="jpeg artifacts"> jpeg artifacts</label>
+                <label><input type="checkbox" value="distorted"> distorted</label>
+                <label><input type="checkbox" value="worst quality"> worst quality</label>
+            </div>
+
+            <label for="customNegatives">Add Custom Negatives</label>
+            <input id="customNegatives" type="text" placeholder="e.g., deformed hands">
+
+            <div class="actions">
+                <button id="generatePrompt" class="primary">Generate Prompt</button>
+                <button id="copyPrompt" class="secondary">Copy Prompt</button>
+            </div>
+
+            <label for="promptOutput">Generated Prompt</label>
+            <textarea id="promptOutput" placeholder="Your prompt will appear here..."></textarea>
+        </section>
+
+        <!-- Video Creator -->
+        <section id="creator" class="tab-content" role="tabpanel" aria-label="Video Creator">
+            <h2>🎞️ Video Creator</h2>
+            <p>Coming soon...</p>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
